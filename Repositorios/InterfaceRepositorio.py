@@ -5,7 +5,9 @@ from bson.objectid import ObjectId
 from typing import TypeVar, Generic, List, get_origin, get_args
 import json
 
+
 T = TypeVar('T')
+
 
 class InterfaceRepositorio(Generic[T]):
     def __init__(self):
@@ -152,3 +154,4 @@ tlsCAFile=ca)
     def ObjectToDBRef(self, item: T):
         nameCollection = item.__class__.__name__.lower()
         return DBRef(nameCollection, ObjectId(item._id))
+  
