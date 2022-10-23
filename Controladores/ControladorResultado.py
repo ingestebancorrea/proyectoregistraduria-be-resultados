@@ -4,6 +4,7 @@ from Modelos.Candidato import Candidato
 from Repositorios.RepositorioResultado import RepositorioResultado
 from Repositorios.RepositorioMesa import RepositorioMesa
 
+
 from Repositorios.RepositorioCandidato import RepositorioCandidato
 class ControladorResultado():
     def __init__(self):
