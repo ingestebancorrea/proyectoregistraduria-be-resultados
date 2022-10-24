@@ -14,7 +14,7 @@ class ControladorResultado():
     def index(self):
         return self.repositorioResultado.findAll()
     """
-    Asignacion estudiante y materia a inscripción
+    Asignacion mesa y candidato a resultado
     """
     def create(self,infoResultado,id_mesa,id_candidato):
         nuevoResultado=Resultado(infoResultado)
@@ -27,7 +27,7 @@ class ControladorResultado():
         elResultado=Resultado(self.repositorioResultado.findById(id))
         return elResultado.__dict__
     """
-    Modificación de inscripción (estudiante y materia)
+    Modificación de resultados (mesa y candidato)
     """
     def update(self,id,infoResultado,id_mesa,id_candidato):
         elResultado=Resultado(self.repositorioResultado.findById(id))
