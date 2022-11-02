@@ -159,6 +159,48 @@ def eliminarResultado(id_resultado):
     json=miControladorResultado.delete(id_resultado)
     return jsonify(json)
 
+#Visualizar resultados
+
+@app.route("/resultado/candidato/<string:id_candidato>",methods=['GET'])
+def resultadoDeCandidatos(id_candidato):
+    json=miControladorResultado.listarResultadosEnCandidato(id_candidato)
+    return jsonify(json)
+
+@app.route("/resultado/mayoria_votos",methods=['GET'])
+def getMayoriaDeVotos():
+    json=miControladorResultado.votosMasAltosPorMesa()
+    return jsonify(json)
+
+@app.route("/resultado/suma_votos/candidato/<string:id_candidato>",methods=['GET'])
+def getSumaVotosPorCandidato(id_candidato):
+    json=miControladorResultado.sumaVotosPorCandidato(id_candidato)
+    return jsonify(json)
+
+@app.route("/resultado/total_votos",methods=['GET'])
+def getTotalVotosPorCandidato():
+    json=miControladorResultado.totalVotosPorCandidato()
+    return jsonify(json)
+
+@app.route("/resultado/candidato_mesa/mesa/<string:id_mesa>",methods=['GET'])
+def getTotalVotosCandidatoPorMesa(id_mesa):
+    json=miControladorResultado.totalVotosCandidatoPorMesa(id_mesa)
+    return jsonify(json)
+
+@app.route("/resultado/votos_mesa",methods=['GET'])
+def getTotalVotosPorMesa():
+    json=miControladorResultado.totalVotosPorMesa()
+    return jsonify(json)
+
+@app.route("/resultado/votos_partido",methods=['GET'])
+def getTotalVotosPorPartido():
+    json=miControladorResultado.totalVotosPorPartido()
+    return jsonify(json)
+
+@app.route("/resultado/partido_mesa/mesa/<string:id_mesa>",methods=['GET'])
+def getTotalVotosPartidoPorMesa(id_mesa):
+    json=miControladorResultado.totalVotosPartidoPorMesa(id_mesa)
+    return jsonify(json)
+
 #Configuracion del archivo config.json
 
 def loadFileConfig():
