@@ -39,3 +39,29 @@ class ControladorResultado():
         return self.repositorioResultado.save(elResultado)
     def delete(self, id):
         return self.repositorioResultado.delete(id)
+    
+    #Metodos para visualizar reportes
+
+    def listarResultadosEnCandidato(self,id_candidato):
+        return self.repositorioResultado.getListadoResultadosEnCandidato(id_candidato)
+
+    def votosMasAltosPorMesa(self):
+        return self.repositorioResultado.getMayorVotacionPorMesa()
+
+    def sumaVotosPorCandidato(self,id_candidato):
+        return self.repositorioResultado.sumaVotosPorCandidato(id_candidato)
+
+    def totalVotosPorCandidato(self):
+        return self.repositorioResultado.totalVotosPorCandidato()
+
+    def totalVotosCandidatoPorMesa(self,id_mesa):
+        return self.repositorioResultado.totalVotosCandidatoPorMesa(id_mesa)
+
+    def totalVotosPorMesa(self):
+        return self.repositorioResultado.totalVotosPorMesa()
+
+    def totalVotosPorPartido(self):
+        return self.repositorioResultado.totalVotosPorPartido()
+
+    def totalVotosPartidoPorMesa(self,id_mesa):
+        return self.repositorioResultado.totalVotosPartidoPorMesa(id_mesa)
