@@ -65,3 +65,6 @@ class ControladorResultado():
 
     def totalVotosPartidoPorMesa(self,id_mesa):
         return self.repositorioResultado.totalVotosPartidoPorMesa(id_mesa)
+    
+    def distribucionPorcentual(self):
+        return self.repositorioResultado.distribucionPorcentual()
