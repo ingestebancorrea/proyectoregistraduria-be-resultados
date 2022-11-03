@@ -160,3 +160,34 @@ class RepositorioResultado(InterfaceRepositorio[Resultado]):
             x = self.getValuesDBRef(x)
             data.append(x)
         return data
+    
+        def distribucionPorcentual(self):
+        laColeccion = self.baseDatos[self.coleccion]
+        myQuery =[
+            {
+                '$lookup': {'from': 'candidato','localField': 'candidato.$id','foreignField': '_id','as': 'Nombre'}
+            }, {
+                '$replaceRoot': {'newRoot': {'$mergeObjects': [{'$arrayElemAt': ['$Nombre', 0]}, '$$ROOT']}}
+            }, {
+                '$group': {'_id': {'partido': '$partido'},'count': {'$sum': 1}}
+            }, {
+                '$project':
+                    {'count': 1,'percentage':
+                        {'$concat': [{'$substr': [{'$multiply': [{'$divide': ['$count', 15]}, 100]}, 0, 4]}, '', '%']}}
+            }, {
+                '$project': {'percentage': 1,'Partido': {'$objectToArray': '$_id'}}
+            }, {
+                '$lookup': {'from': 'partido','localField': 'Partido.v.$id','foreignField': '_id','as': 'Partido'}
+            }, {
+                '$replaceRoot': {'newRoot': {'$mergeObjects': [{'$arrayElemAt': ['$Partido', 0]}, '$$ROOT']}}
+            }, {
+                '$project': {'Porcentaje': '$percentage','Partido': '$partido'}
+            }
+        ]
+        data = []
+        for x in laColeccion.aggregate(myQuery):
+            x["_id"] = x["_id"].__str__()
+            x = self.transformObjectIds(x)
+            x = self.getValuesDBRef(x)
+            data.append(x)
+        return data
