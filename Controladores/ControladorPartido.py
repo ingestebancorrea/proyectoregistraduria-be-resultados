@@ -24,3 +24,6 @@ class ControladorPartido():
 
     def delete(self, id):
         return self.repositorioPartido.delete(id)
+
+    def listarPartido(self, id_partido):
+        return self.repositorioPartido.getListadoPartido(id_partido)
