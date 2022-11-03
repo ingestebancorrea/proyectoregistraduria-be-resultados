@@ -201,6 +201,11 @@ def getTotalVotosPartidoPorMesa(id_mesa):
     json=miControladorResultado.totalVotosPartidoPorMesa(id_mesa)
     return jsonify(json)
 
+@app.route("/resultado/distribucion_porcentual",methods=['GET'])
+def getDistribucionPorcentual():
+    json=miControladorResultado.distribucionPorcentual()
+    return jsonify(json)
+
 #Configuracion del archivo config.json
 
 def loadFileConfig():
